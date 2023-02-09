@@ -1,17 +1,18 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 import { Container } from "@mui/material";
+import Header from "./Header";
+import Navbar from "./Navbar";
 
-interface Props {
-  children: React.ReactElement;
-}
-
-export default function DashboardLayout({ children }: Props) {
+export default function DashboardLayout() {
   return (
     <div>
-      <Container component="main">
-        <Outlet />
-      </Container>
+      <Header />
+      <Navbar />
+      <main style={{ paddingTop: 85, paddingRight: 240 }}>
+        <Container>
+          <Outlet />
+        </Container>
+      </main>
     </div>
   );
 }

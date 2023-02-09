@@ -1,0 +1,30 @@
+.header {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 85px;
+  padding: 20px 40px;
+  box-shadow: 0px 4px 6px -4px rgb(0 0 0 / 30%);
+  z-index: 1201;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  .logo {
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+
+    > * {
+      margin: 0 10px;
+    }
+
+    .switch {
+      transform: rotate(90deg);
+    }
+  }
+}

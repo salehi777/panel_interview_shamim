@@ -1,0 +1,19 @@
+.dashboard {
+  .details {
+    font-size: 13px;
+  }
+
+  .works {
+    font-size: 14px;
+  }
+
+  .worksHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > :last-child {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

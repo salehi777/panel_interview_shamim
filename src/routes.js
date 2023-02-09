@@ -14,11 +14,10 @@ export default function Router() {
     {
       path: "/",
       element: <DashboardLayout />,
-      children: [{ index: true, element: <DashboardPage /> }],
-    },
-    {
-      path: "*",
-      element: <Page404 />,
+      children: [
+        { index: true, element: <DashboardPage /> },
+        { path: "*", element: <Page404 /> },
+      ],
     },
   ]);
 

@@ -1,0 +1,73 @@
+.userDetails {
+  .section1,
+  .section2,
+  .section3,
+  .section4,
+  .section5,
+  .section6 {
+    padding: 15px 0;
+  }
+
+  .section1 {
+    color: var(--primary);
+    font-weight: 600;
+    > :last-child {
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      > * {
+        margin: 0 2px;
+      }
+    }
+    :global {
+      .MuiAvatar-root {
+        border: 1px solid var(--primary);
+      }
+    }
+  }
+
+  .section2,
+  .section4 {
+    :global {
+      .MuiChip-root {
+        font-size: 11px;
+        height: 28px;
+        border-radius: 10px;
+        color: var(--grey);
+      }
+    }
+  }
+
+  .section3 {
+    font-size: 12px;
+  }
+
+  .section5,
+  .section6 {
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      > :first-child {
+        display: inline-flex;
+      }
+    }
+  }
+}
+
+// SubUserDetails
+.sub {
+  .subHead {
+    display: flex;
+    align-items: center;
+    color: var(--grey);
+
+    hr {
+      flex: 1;
+      margin: 0 5px;
+      border: 0 solid var(--grey-light);
+      border-bottom-width: 1px;
+    }
+  }
+}
