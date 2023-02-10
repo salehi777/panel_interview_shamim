@@ -1,0 +1,13 @@
+.main {
+  padding-top: 85px;
+  padding-right: 240px;
+
+  @media (max-width: 899px) {
+    padding-right: 0;
+  }
+}
+
+.container {
+  padding-left: 24px;
+  padding-right: 24px;
+}

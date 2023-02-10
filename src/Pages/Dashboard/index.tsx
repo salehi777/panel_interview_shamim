@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Grid } from "@mui/material";
 import styles from "./styles.module.scss";
@@ -12,6 +13,16 @@ const datas = [
   {
     title: "تدوین و صداگذاری",
     data: [
+      {
+        id: 1,
+        image: "/kala.png",
+        name: "تدوین تیزر تبلیغاتی انرژی زا",
+      },
+      {
+        id: 1,
+        image: "/kala.png",
+        name: "تدوین تیزر تبلیغاتی انرژی زا",
+      },
       {
         id: 1,
         image: "/kala.png",
@@ -77,6 +88,9 @@ const datas = [
 ];
 
 export default function DashboardPage() {
+  const [view, setView] = useState("list");
+  const toggleView = () => setView(view === "list" ? "time" : "list");
+
   return (
     <>
       <Helmet>
@@ -84,20 +98,38 @@ export default function DashboardPage() {
       </Helmet>
 
       <Grid container spacing={3} pt={3} className={styles.dashboard}>
-        <Grid item xs={3} className={styles.details}>
+        <Grid item xs={12} md={12} lg={4} xl={3} className={styles.details}>
           <UserDetails />
         </Grid>
 
-        <Grid item container xs={9} rowSpacing={3} className={styles.works}>
+        <Grid
+          item
+          container
+          direction="column"
+          xs={12}
+          md={12}
+          lg={8}
+          xl={9}
+          rowSpacing={3}
+          className={styles.works}
+        >
           <Grid item className={styles.worksHead}>
-            <span>my works</span>
+            <span>آثار من:</span>
             <div>
-              <span>view</span>
+              <span>نوع نمایش: &nbsp;</span>
               <div>
-                <span>
+                <span
+                  data-active={view === "list"}
+                  data-view="list"
+                  onClick={toggleView}
+                >
                   <TbLayoutList />
                 </span>
-                <span>
+                <span
+                  data-active={view === "time"}
+                  data-view="time"
+                  onClick={toggleView}
+                >
                   <TbClock />
                 </span>
               </div>
@@ -117,7 +149,12 @@ export default function DashboardPage() {
           ))}
 
           <Grid item>
-            <Button variant="text" startIcon={<HiOutlineFolderAdd />}>
+            <Button
+              // variant="text"
+              variant="outlined"
+              startIcon={<HiOutlineFolderAdd />}
+              className={styles.addCategory}
+            >
               افزودن دسته جدید
             </Button>
           </Grid>

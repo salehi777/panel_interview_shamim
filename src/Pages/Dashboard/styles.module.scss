@@ -11,9 +11,47 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: var(--grey);
+    > :first-child {
+      font-size: 16px;
+    }
     > :last-child {
+      font-size: 13px;
       display: flex;
       align-items: center;
+      > div {
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        padding: 3px;
+        border-radius: 20px;
+        background-color: #d5dde8;
+        > span {
+          color: #697b96;
+          display: flex;
+          cursor: pointer;
+          &[data-active="true"] {
+            color: #08182c;
+            background-color: #ffffff;
+          }
+          &[data-view="list"] {
+            border-radius: 0 20px 20px 0;
+            padding: 2px 10px 2px 6px;
+          }
+          &[data-view="time"] {
+            border-radius: 20px 0 0 20px;
+            padding: 2px 6px 2px 10px;
+          }
+        }
+      }
     }
+  }
+
+  .addCategory {
+    margin-bottom: 40px;
+    border-radius: 20px;
+    border-color: transparent;
+    background-color: white;
+    gap: 5px;
   }
 }

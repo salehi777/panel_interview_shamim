@@ -4,12 +4,16 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+import ThemeGlobalProvider from "Context/ThemeGlobalContext";
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeGlobalProvider>
+      <App />
+    </ThemeGlobalProvider>
   </React.StrictMode>
 );
 

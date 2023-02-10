@@ -1,17 +1,17 @@
 import { Outlet } from "react-router-dom";
-import { Container } from "@mui/material";
 import Header from "./Header";
 import Navbar from "./Navbar";
+import styles from "./styles.module.scss";
 
 export default function DashboardLayout() {
   return (
     <div>
       <Header />
       <Navbar />
-      <main style={{ paddingTop: 85, paddingRight: 240 }}>
-        <Container>
+      <main className={styles.main}>
+        <div className={styles.container}>
           <Outlet />
-        </Container>
+        </div>
       </main>
     </div>
   );

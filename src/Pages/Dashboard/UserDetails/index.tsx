@@ -14,8 +14,8 @@ import { BsDot } from "react-icons/bs";
 
 export default function UserDetails() {
   return (
-    <Card>
-      <Grid container direction="column" className={styles.userDetails}>
+    <Card className={styles.userDetails}>
+      <Grid container direction="column">
         <Grid item>
           <SubUserDetails title="اطلاعات شناسایی" onClick={() => {}}>
             <Grid

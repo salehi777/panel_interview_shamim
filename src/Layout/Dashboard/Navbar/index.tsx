@@ -1,13 +1,13 @@
 import { useState } from "react";
 import clsx from "clsx";
-import { Drawer } from "@mui/material";
+import { Drawer, useMediaQuery } from "@mui/material";
 import styles from "./styles.module.scss";
 import { Link, useLocation } from "react-router-dom";
 
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
-import { FcInvite } from "react-icons/fc";
+import { TbMail } from "react-icons/tb";
 import { TbFileInvoice } from "react-icons/tb";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { IoShapesOutline } from "react-icons/io5";
@@ -30,7 +30,7 @@ const navList = [
     path: "/chats",
   },
   {
-    Icon: FcInvite,
+    Icon: TbMail,
     label: "ارسال دعوت‌نامه",
     path: "/send-invite",
   },
@@ -52,6 +52,7 @@ const navList = [
 ];
 
 export default function Navbar() {
+  const isMobile = useMediaQuery((theme: any) => theme.breakpoints.down("md"));
   const location = useLocation();
 
   const [open, setOpen] = useState(true);
@@ -61,7 +62,7 @@ export default function Navbar() {
     <Drawer
       open={open}
       onClose={toggleDrawer}
-      variant="permanent"
+      variant={isMobile ? "temporary" : "permanent"}
       // variant="persistent"
       anchor="right"
       ModalProps={{ keepMounted: true }}
@@ -82,6 +83,10 @@ export default function Navbar() {
           </li>
         ))}
       </ul>
+
+      <div className={styles.arrow}>
+        <SlArrowRight />
+      </div>
     </Drawer>
   );
 }

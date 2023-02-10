@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Switch } from "@mui/material";
+import { Switch, Card } from "@mui/material";
 import styles from "./styles.module.scss";
 import Badge from "@mui/material/Badge";
 import IconButton from "Components/IconButton";
+import { useGlobalTheme } from "Hooks/useGlobalTheme";
 
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { RiSettings4Line } from "react-icons/ri";
@@ -11,15 +11,17 @@ import { FaMoon } from "react-icons/fa";
 import { HiSun } from "react-icons/hi";
 
 export default function Header() {
-  const [checked, setChecked] = useState(true);
+  const { globalTheme, setMode } = useGlobalTheme();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
+    setMode(event.target.checked ? "light" : "dark");
   };
 
   return (
-    <header className={styles.header}>
-      <div className={styles.logo}>LOGO</div>
+    <Card component="header" className={styles.header}>
+      <div className={styles.logo}>
+        <img src="/logo.png" alt="Logo" />
+      </div>
       <div className={styles.buttons}>
         <Badge badgeContent={4} color="primary" overlap="circular">
           <IconButton>
@@ -37,9 +39,12 @@ export default function Header() {
           </IconButton>
         </div>
         <div className={styles.switch}>
-          <Switch checked={checked} onChange={handleChange} />
+          <Switch
+            checked={globalTheme.palette.mode === "light"}
+            onChange={handleChange}
+          />
         </div>
       </div>
-    </header>
+    </Card>
   );
 }

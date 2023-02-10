@@ -1,4 +1,5 @@
-import { Grid } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Box, Grid, useMediaQuery } from "@mui/material";
 import Card from "Components/Card";
 import styles from "./styles.module.scss";
 
@@ -21,29 +22,45 @@ interface Props {
 
 export default function MyWorksSection(props: Props) {
   const { title, onEdit, onDelete, onAdd, data } = props;
+  const [maxCount, setMaxCount] = useState(2);
+
+  const smUp = useMediaQuery((theme: any) => theme.breakpoints.up("sm"));
+  const xlUp = useMediaQuery((theme: any) => theme.breakpoints.up("xl"));
+
+  useEffect(() => {
+    setMaxCount(xlUp ? 4 : smUp ? 2 : 1);
+  }, [smUp, xlUp]);
 
   return (
     <Card>
       <div className={styles.title}>
         <span>{title}</span>
-        <span onClick={() => onEdit()}>
+        <span data-icon="edit" onClick={() => onEdit()}>
           <TbEdit />
         </span>
-        <span onClick={() => onDelete()}>
+        <span data-icon="delete" onClick={() => onDelete()}>
           <RiDeleteBinLine />
         </span>
       </div>
 
-      <Grid container>
-        {data.slice(0, 3).map((item) => (
-          <Grid item className={styles.item}>
-            <div className={styles.itemMenu}>
-              <BiDotsVerticalRounded />
-            </div>
-            <div className={styles.itemImage}>
-              <img src={item.image} />
-            </div>
-            <div>{item.name}</div>
+      <Grid container spacing={1} flexWrap="nowrap">
+        {data.slice(0, maxCount).map((item) => (
+          <Grid item>
+            <Card elevation={1} className={styles.item}>
+              <Box
+                className={styles.itemMenu}
+                sx={{
+                  background: (theme) =>
+                    theme.palette.mode === "light" ? "#ffffff" : "#303030",
+                }}
+              >
+                <BiDotsVerticalRounded />
+              </Box>
+              <div className={styles.itemImage}>
+                <img src={item.image} alt={item.name} />
+              </div>
+              <div>{item.name}</div>
+            </Card>
           </Grid>
         ))}
 
@@ -54,9 +71,11 @@ export default function MyWorksSection(props: Props) {
             </span>
             <span>افزودن اثر</span>
           </Grid>
-          <Grid item className={styles.more}>
-            نمایش بیشتر...
-          </Grid>
+          {data.length > maxCount && (
+            <Grid item className={styles.more}>
+              نمایش بیشتر...
+            </Grid>
+          )}
         </Grid>
       </Grid>
     </Card>
