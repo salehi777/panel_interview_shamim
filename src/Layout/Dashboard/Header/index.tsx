@@ -11,10 +11,15 @@ import { FaMoon } from "react-icons/fa";
 import { HiSun } from "react-icons/hi";
 
 export default function Header() {
-  const { globalTheme, setMode } = useGlobalTheme();
+  const {
+    globalTheme: {
+      palette: { mode },
+    },
+    setMode,
+  } = useGlobalTheme();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMode(event.target.checked ? "light" : "dark");
+    setMode(!event.target.checked ? "light" : "dark");
   };
 
   return (
@@ -39,10 +44,10 @@ export default function Header() {
           </IconButton>
         </div>
         <div className={styles.switch}>
-          <Switch
-            checked={globalTheme.palette.mode === "light"}
-            onChange={handleChange}
-          />
+          <span data-mode={mode}>
+            {mode === "dark" ? <HiSun /> : <FaMoon />}
+          </span>
+          <Switch checked={mode === "dark"} onChange={handleChange} />
         </div>
       </div>
     </Card>

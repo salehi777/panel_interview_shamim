@@ -27,6 +27,45 @@
 
     .switch {
       transform: rotate(90deg);
+      position: relative;
+
+      > :first-child {
+        position: absolute;
+        &[data-mode="dark"] {
+          font-size: 14px;
+          color: #ffed00;
+          left: 13px;
+          bottom: 7px;
+        }
+        &[data-mode="light"] {
+          font-size: 12px;
+          color: #505050;
+          right: 12px;
+          top: 12px;
+          transform: rotate(250deg);
+        }
+      }
+
+      :global {
+        .MuiSwitch-root {
+          height: 43px;
+        }
+        .MuiSwitch-track {
+          color: rgba(0, 0, 0, 0.54);
+          border-radius: 40px;
+        }
+        .MuiSwitch-switchBase {
+          top: 7px;
+          left: 6px;
+          &.Mui-checked {
+            left: 2px;
+          }
+        }
+        .MuiSwitch-thumb {
+          width: 11px;
+          height: 11px;
+        }
+      }
     }
   }
 }
