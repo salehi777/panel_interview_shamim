@@ -1,6 +1,9 @@
 .paper {
   top: 85px !important;
   width: 240px;
+  box-shadow: 0 0 !important;
+  overflow: unset !important;
+  transition: transform 0.3s !important;
 
   .nav {
     display: flex;
@@ -31,5 +34,20 @@
         font-size: 22px;
       }
     }
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    color: var(--primary);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    font-size: 14px;
+    border: 1px solid var(--primary);
+    cursor: pointer;
   }
 }

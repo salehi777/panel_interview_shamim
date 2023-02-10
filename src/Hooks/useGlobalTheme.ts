@@ -25,5 +25,14 @@ export const useGlobalTheme = () => {
     localStorage.setItem("theme", JSON.stringify(newTheme));
   };
 
-  return { globalTheme, loadGlobalTheme, setMode };
+  const toggleDrawer = () => {
+    const newTheme = {
+      ...globalTheme,
+      drawerOpen: !globalTheme.drawerOpen,
+    };
+    setGlobalTheme(newTheme);
+    localStorage.setItem("theme", JSON.stringify(newTheme));
+  };
+
+  return { globalTheme, loadGlobalTheme, setMode, toggleDrawer };
 };

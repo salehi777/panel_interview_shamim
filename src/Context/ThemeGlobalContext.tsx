@@ -6,6 +6,7 @@ interface Initial {
     palette: {
       mode: PaletteMode;
     };
+    drawerOpen: boolean;
   };
   setGlobalTheme: Function;
 }
@@ -15,6 +16,7 @@ const initial: Initial = {
     palette: {
       mode: "light",
     },
+    drawerOpen: true,
   },
   setGlobalTheme: () => {},
 };

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import clsx from "clsx";
-import { Drawer, useMediaQuery } from "@mui/material";
-import styles from "./styles.module.scss";
+import { Box, Drawer, useMediaQuery } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
+import { useGlobalTheme } from "Hooks/useGlobalTheme";
+import styles from "./styles.module.scss";
 
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
@@ -54,19 +55,30 @@ const navList = [
 export default function Navbar() {
   const isMobile = useMediaQuery((theme: any) => theme.breakpoints.down("md"));
   const location = useLocation();
+  const {
+    globalTheme: { drawerOpen },
+    toggleDrawer,
+  } = useGlobalTheme();
 
-  const [open, setOpen] = useState(true);
-  const toggleDrawer = () => setOpen(!open);
+  useEffect(() => {
+    if (isMobile && drawerOpen) toggleDrawer();
+  }, []);
 
   return (
     <Drawer
-      open={open}
+      open
+      hideBackdrop={isMobile && !drawerOpen}
       onClose={toggleDrawer}
-      variant={isMobile ? "temporary" : "permanent"}
-      // variant="persistent"
+      variant={isMobile ? "temporary" : "persistent"}
       anchor="right"
       ModalProps={{ keepMounted: true }}
       classes={{ paper: styles.paper }}
+      PaperProps={{
+        style: {
+          transform: `translateX(${drawerOpen ? 0 : 239}px)`,
+          visibility: "visible",
+        },
+      }}
     >
       <ul className={styles.nav}>
         {navList.map(({ Icon, label, path }) => (
@@ -84,9 +96,18 @@ export default function Navbar() {
         ))}
       </ul>
 
-      <div className={styles.arrow}>
+      <Box
+        onClick={toggleDrawer}
+        className={styles.arrow}
+        sx={{
+          left: drawerOpen ? -14 : -28,
+          transform: `rotate(${drawerOpen ? 0 : 180}deg)`,
+          background: (theme) =>
+            theme.palette.mode === "light" ? "#ffffff" : "#303030",
+        }}
+      >
         <SlArrowRight />
-      </div>
+      </Box>
     </Drawer>
   );
 }
